@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     marginLeft: 10,
     textAlign: 'center',
+    textAlignVertical: 'center',
     fontSize: 24,
     paddingTop: 10,
   },
@@ -42,6 +43,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
     color: 'white',
     textAlign: 'center',
+    fontSize: 24,
+  },
+  buttonText: {
+    color: 'white',
+    textAlign: 'center',
+    textAlignVertical: 'center',
     fontSize: 24,
   },
   pokeImage: {

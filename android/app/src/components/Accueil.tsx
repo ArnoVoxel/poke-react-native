@@ -18,6 +18,7 @@ type RootStackParamList = {
   Home: undefined;
   Search: undefined;
   RandomPokemon: undefined;
+  Favoris: undefined;
   Feed: { sort: 'latest' | 'top' } | undefined;
 };
 
@@ -38,6 +39,9 @@ const Accueil = ({ route, navigation }: Props) => {
       </Pressable>
       <Pressable onPress={() => navigation.navigate('RandomPokemon')}>
         <Text style={styles.button}>PokeHAZARD</Text>
+      </Pressable>
+      <Pressable onPress={() => navigation.navigate('Favoris')}>
+        <Text style={styles.button}>Favoris</Text>
       </Pressable>
     </View>
   );

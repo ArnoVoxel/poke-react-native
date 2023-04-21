@@ -12,6 +12,7 @@ import {
   Image,
   FlatList,
 } from 'react-native';
+import AddToFavoris from './AddToFavoris';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import styles from '../styles/Styles';
 import PokemonResource from '../Models/Pokemondata.type';
@@ -71,6 +72,7 @@ function DetailsPokemon ({route, navigation}: Props) {
         <Image style={styles.imageDetail} source={{uri: pokemonStored.sprites.front}} />
         <Image style={styles.imageDetail} source={{uri: pokemonStored.sprites.back}} />
       </View>
+      <AddToFavoris pokemon={pokemonStored}/>
       <FlatList data={pokemonStored.types} renderItem={({item})=> <Item title={item.name}/>}/>
       <FlatList data={pokemonStored.stats} renderItem={({item})=> <Item title={item.name+' : '+item.value}/>}/>
       <FlatList data={pokemonStored.abilities} renderItem={({item})=> <Item title={item.name}/>}/>

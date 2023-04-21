@@ -4,6 +4,7 @@ import { Button, Pressable, Image, View, ScrollView, Text, StyleSheet, Animated,
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import styles from '../styles/Styles';
 import type {PropsWithChildren} from 'react';
+import AddToFavoris from './AddToFavoris';
 
 type Pokemon = {
   name: string;
@@ -24,8 +25,8 @@ type Props = NativeStackScreenProps<RootStackParamList>;
 type ZoomInViewProps = PropsWithChildren<{style: ViewStyle}>;
 
 const ZoomInView: React.FC<ZoomInViewProps> = props => {
-  const zoomAnim = React.useRef(new Animated.Value(10)).current; // Initial value for scale: 0
-  const rotateAnim = React.useRef(new Animated.Value(0)).current; // Initial value for rotate: 0
+  const zoomAnim = React.useRef(new Animated.Value(10)).current; // Initial value for scale
+  const rotateAnim = React.useRef(new Animated.Value(0)).current; // Initial value for rotate
 
   React.useEffect(() => {
     Animated.timing(zoomAnim, {
@@ -35,7 +36,6 @@ const ZoomInView: React.FC<ZoomInViewProps> = props => {
     }).start();
   }, [zoomAnim]);
 
-  // transform rotateX(45deg) rotateY(45deg) rotateZ(45deg) after 2 seconds
   React.useEffect(() => {
     Animated.timing(rotateAnim, {
       toValue: 90,
@@ -47,11 +47,9 @@ const ZoomInView: React.FC<ZoomInViewProps> = props => {
 
 
   return (
-    <Animated.View // Special animatable View
+    <Animated.View
       style={{
         ...props.style,
-        // scaleX: zoomAnim, // Bind scale to animated value
-        // scaleY: zoomAnim,
         transform: [
           {scaleX: zoomAnim},
           {scaleY: zoomAnim},
@@ -59,14 +57,6 @@ const ZoomInView: React.FC<ZoomInViewProps> = props => {
             inputRange: [0,3, 6, 30, 45, 50, 60, 65, 66, 68, 73, 90],
             outputRange: ['0deg','10deg','-10deg', '0deg', '0deg','15deg', '-15deg','0deg','0deg','10deg','-10deg', '0deg']
           })},
-          // {rotateX: rotateAnim.interpolate({
-          //   inputRange: [0, 90],
-          //   outputRange: ['0deg', '45deg']
-          // })},
-          // {rotateY: rotateAnim.interpolate({
-          //   inputRange: [0, 90],
-          //   outputRange: ['0deg', '45deg']
-          // })},
         ],
       }}>
       {props.children}
@@ -101,7 +91,6 @@ const RandomPokemon = ({ navigation }: Props) => {
     getPokemon();
   }, []);
 
-// set pokemonCaptured to true after 5 seconds
   setTimeout(() => {
     setPokemonCaptured(true);
   }, 5000);
@@ -123,6 +112,7 @@ const RandomPokemon = ({ navigation }: Props) => {
           source={{uri:pokemon.sprites.back_default}}
           alt={"missing " + pokemon.name + " picture"}
         />
+        <AddToFavoris pokemon={pokemon} />
         <Button
         title="Go Back"
         onPress={() => navigation.goBack()}

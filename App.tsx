@@ -5,6 +5,7 @@ import Accueil from './android/app/src/components/Accueil';
 import Search from './android/app/src/components/Search';
 import RandomPokemon from './android/app/src/components/RandomPokemon';
 import DetailsPokemon from './android/app/src/components/DetailsPokemon';
+import Favoris from './android/app/src/components/Favoris';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,6 +17,7 @@ function App() {
         <Stack.Screen name="Search" component={Search} options={{title: 'Recherche'}}/>
         <Stack.Screen name='Details' component={DetailsPokemon} />
         <Stack.Screen name="RandomPokemon" component={RandomPokemon} />
+        <Stack.Screen name="Favoris" component={Favoris} />
       </Stack.Navigator>
     </NavigationContainer>
   );
